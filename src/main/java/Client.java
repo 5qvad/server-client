@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
     private static final int PORT = 8080;
@@ -15,8 +16,14 @@ public class Client {
                     clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
+            Scanner scanner = new Scanner(System.in);
             {
-                out.println("Hello server!");
+                System.out.println(in.readLine());
+
+                while (true) {
+                    out.println(scanner.nextLine());
+                    System.out.println(in.readLine());
+                }
             }
 
         } catch (IOException e) {
